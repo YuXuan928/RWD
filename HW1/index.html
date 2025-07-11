@@ -1,86 +1,140 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" >
 <head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="DH.Studio 工作室作品展示頁面，網頁設計、平面設計等作品設計涵蓋範圍非常廣泛，歡迎洽詢合作~">
-	<meta name="keywords" content="數位內容,DHS,DH.studio,tristan6009,平面設計,網頁設計與架設,影音媒體剪輯及與後製">
-	<title>Portfolio-個人作品集</title>
+	<title>Bootstrap5 page template</title>
 	<!-- Bootstrap CSS -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-	<link rel="stylesheet" href="js/lightboxshow.css" >
-	<link rel="shortcut icon" href="images/icon.png">
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
-    <style>
-    	.textAlign{
-    		text-align: justify;
-    	}
-    	.textLetterSpacing{
-    		Letter-spacing: 1px;
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js" integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK" crossorigin="anonymous"></script>
+	<style>
+		.nav-link-style {
+			text-decoration: none;       /* 移除底線 */
+			color: #6c757d;              /* 灰色文字（Bootstrap 的 text-secondary） */
+			padding: 0 15px;
+			font-size: 1rem;
+			display: inline-block;       /* 讓 padding 生效 */
+			background: none;            /* ⬅️ 無背景 */
+			border: none;                /* 無邊框 */
+		}
 
-    	}
-    </style>
+		.nav-link-style:hover {
+			color: #000;                 /* 滑鼠移入變黑 */
+			text-decoration: none;
+		}
+
+		.divider {
+			width: 1px;
+			height: 20px;
+			background-color: #ccc;
+			margin: 0 10px;
+		}
+		.progress-bar {
+			font-size: 0.9rem;
+		}
+	</style>
+
 </head>
-<body class = "bg-dark" oncontextmenu="window.event.returnValue=false;alert('本站內容不提供複製下載, 有需要請與我們聯繫 tristan6009@gmail.com')">
-	<div class="container-fluid mt-5">
-		<div class = "row">
-			<div class = "col-12 col-lg-4">
-				<h1 class="display-6 text-info text-center"> DH.Studio</h1>
-				<img src="images/p.jpg" alt="這是一張有木質長板凳, 一個喝著咖啡正在思考計劃的人, 長板凳上有筆記本,手機以及裝咖啡得托盤" class="img-thumbnail mx-auto d-block">
-				<p class="text-white textAlign">不斷投入創作與學習，也是身為SOHO族長期經營的主要方式。
-					目前主要是數位內容的創作與經營，包含平面設計、文案提稿、 活動企劃、多媒體影音後製、網站架設等項目。
-					自2015年經營以來頗受客戶的好評!
-					相信也一定可以為您提供適合的解決方案。
-					<br>
-					<small class="mt-3 d-block text-start">
-						Devotion to creation and learning is also the main way of long-term management of SOHO.
-						At present, it is mainly the creation and operation of digital content! Including graphic design, copywriting submission, event planning, multimedia video, web design and other projects.
-						Since its operation in 2015, it has been well received by customers! I believe it can also provide you with suitable solutions.						
-					</small>
-				</p>
-				<ul class = "text-secondary">
-					<li><a href="tel:+886-3-3351688" title="撥打電話與我們聯絡" class="text-secondary text-decoration-none">886-03-3351688</a></li>
-					<li>testMyway@gmail.com</li>
-					<li>Taoyuan City</li>
-				</ul>
+<body>
+	<div class="container py-3">
+		<div class="d-flex justify-content-between align-items-center">		
+			<img src="images/logo.png" alt="品牌logo" class="img-fluid"> 					
+			<div class="d-flex align-items-center">
+				<a href="#" class="nav-link-style">Projects</a>
+				<div class="divider"></div>
+				<a href="#" class="nav-link-style">Our Studio</a>
+				<div class="divider"></div>
+				<a href="#" class="nav-link-style">Blog</a>
+				<div class="divider"></div>
+				<a href="#" class="nav-link-style">Contact</a>
 			</div>
+		</div>
+	</div>
 
-			<div class="col-12 col-lg-8 mt-3">
-				<div class="row">
-					<div class="col-12 col-md-6 col-lg-3"><a href="images/pic (1).jpg" data-lightbox="pic" title="森林"><img src="images/pic (1).jpg" alt="" class="img-fluid" title="左鍵一下 開啟大圖"></a></div>
-					<div class="col-md-6 col-lg-3"><a href="images/pic (2).jpg" data-lightbox="pic" title=""><img src="images/pic (2).jpg" alt="" class="img-fluid"></a></div>
-					<div class="col-md-6 col-lg-3"><a href="images/pic (3).jpg" data-lightbox="pic" title=""><img src="images/pic (3).jpg" alt="" class="img-fluid"></a></div>
-					<div class="col-md-6 col-lg-3"><a href="images/pic (4).jpg" data-lightbox="pic" title=""><img src="images/pic (4).jpg" alt="" class="img-fluid"></a></div>			
-				</div>
-				<div class="row mt-2">
-					<div class="col-md-6 col-lg-3"><a href="images/pic (5).jpg" data-lightbox="pic" title=""><img src="images/pic (5).jpg" alt="" class="img-fluid"></a></div>
-					<div class="col-md-6 col-lg-3"><a href="images/pic (6).jpg" data-lightbox="pic" title=""><img src="images/pic (6).jpg" alt="" class="img-fluid"></a></div>
-					<div class="col-md-6 col-lg-3"><a href="images/pic (7).jpg" data-lightbox="pic" title=""><img src="images/pic (7).jpg" alt="" class="img-fluid"></a></div>
-					<div class="col-md-6 col-lg-3"><a href="images/pic (8).jpg" data-lightbox="pic" title=""><img src="images/pic (8).jpg" alt="" class="img-fluid"></a></div>			
-				</div>
-				<div class="row mt-2">
-					<div class="col-md-6 col-lg-3"><a href="images/pic (9).jpg" data-lightbox="pic" title=""><img src="images/pic (9).jpg" alt="" class="img-fluid"></a></div>
-					<div class="col-md-6 col-lg-3"><a href="images/pic (10).jpg" data-lightbox="pic" title=""><img src="images/pic (10).jpg" alt="" class="img-fluid"></a></div>
-					<div class="col-md-6 col-lg-3"><a href="images/pic (11).jpg" data-lightbox="pic" title=""><img src="images/pic (11).jpg" alt="" class="img-fluid"></a></div>
-					<div class="col-md-6 col-lg-3"><a href="images/pic (12).jpg" data-lightbox="pic" title=""><img src="images/pic (12).jpg" alt="" class="img-fluid"></a></div>			
-				</div>
-				<div class="row mt-2">
-					<div class="col-md-6 col-lg-3"><a href="images/pic (13).jpg" data-lightbox="pic" title=""><img src="images/pic (13).jpg" alt="" class="img-fluid"></a></div>
-					<div class="col-md-6 col-lg-3"><a href="images/pic (14).jpg" data-lightbox="pic" title=""><img src="images/pic (14).jpg" alt="" class="img-fluid"></a></div>
-					<div class="col-md-6 col-lg-3"><a href="images/pic (15).jpg" data-lightbox="pic" title=""><img src="images/pic (15).jpg" alt="" class="img-fluid"></a></div>
-					<div class="col-md-6 col-lg-3"><a href="images/pic (16).jpg" data-lightbox="pic" title=""><img src="images/pic (16).jpg" alt="" class="img-fluid"></a></div>			
-				</div>
+	<hr class="mt-4">
 
+	<div class="row ">
+		<div class="col text-center">
+			<p class="mt-2">The Creative web & mobile studio,We are young designers and focused on brand identify,web development and social marketing。</p><br>
+			<div class="progress mx-auto mt-0" style="height: 20px; width: 80%;">
+				<div class="progress-bar bg-primary d-flex justify-content-center align-items-center" style="width: 90%;">
+					目前收藏量已達 90%
+				</div>
 			</div>
+		</div>
+	</div>
 
+	<hr class="mt-4">
+
+	<div class="container mt-4">
+		<!-- 第一列 -->
+		<div class="row mb-4">
+			<div class="col d-flex justify-content-center align-items-center">
+				<img src="images/p1.jpg" alt="" class="img-thumbnail">
+			</div>
+			<div class="col d-flex justify-content-center align-items-center">
+				<img src="images/p2.jpg" alt="" class="img-thumbnail">
+			</div>
+			<div class="col d-flex justify-content-center align-items-center">
+				<img src="images/p3.jpg" alt="" class="img-thumbnail">
+			</div>
 		</div>
 
+		<div class="row">
+			<div class="col d-flex justify-content-center align-items-center">
+				<img src="images/p4.jpg" alt="" class="img-thumbnail">
+			</div>
+			<div class="col d-flex justify-content-center align-items-center">
+				<img src="images/p5.jpg" alt="" class="img-thumbnail">
+			</div>
+			<div class="col d-flex justify-content-center align-items-center">
+				<img src="images/p6.jpg" alt="" class="img-thumbnail">
+			</div>
+		</div>
 
+		<ul class="pagination justify-content-center mt-4">
+			<li class="page-item active"><a href="" class="page-link">1</a></li>
+			<li class="page-item "><a href="" class="page-link">2</a></li>
+			<li class="page-item "><a href="" class="page-link">3</a></li>
+			<li class="page-item "><a href="" class="page-link">4</a></li>
+			<li class="page-item "><a href="" class="page-link">5</a></li>
+			<li class="page-item "><a href="" class="page-link">6</a></li>
+		</ul>
 
-	<script src="js/jquery-3.6.0.min.js"></script>
-	<script src="js/lightbox.js"></script>
+		<div class="col text-center mt-4">
+			<p >Hello,if you interset working together,just send message to us.</p>
+		</div>
+	</div>
 
-	</body>
-	</html>
+	<hr class="mt-4">
+
+	<div class="container py-3">
+		<div class="d-flex justify-content-between align-items-center">		
+			<img src="images/logo.png" alt="品牌logo" class="img-fluid"> 					
+			<div class="d-flex align-items-center">
+				<p class="mb-0 ms-3">No. 3, Section 2, Youshi Road, Yangmei District, Taoyuan City 326</p>
+			</div>
+			<div class="d-flex align-items-center">
+				<p class="mb-0 ms-3">Email:textDemo@gmaila.com<br>Tel: 03 464 1162</p>
+			</div>
+		</div>
+	</div>
+
+	<hr class="mt-4">
+
+	<div class="container py-3">
+		<div class="d-flex justify-content-between align-items-center">		
+			<div class="d-flex align-items-center">
+				<p class="mb-0">&copy 2025 DH.Studio | All rights reversed</p>
+			</div>
+			<div class="d-flex align-items-center gap-3">
+				<img src="images/facebook.png" alt="facebook" class="img-fluid" style="width: 32px; height: 32px;"> 			
+				<img src="images/twitter.png" alt="twitter" class="img-fluid" style="width: 32px; height: 32px;">
+				<img src="images/instagram.png" alt="instagram" class="img-fluid" style="width: 32px; height: 32px;">
+			</div>
+		</div>
+	</div>
+</body>
+</html>
