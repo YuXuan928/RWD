@@ -14,7 +14,12 @@
   <div class="container">
     <div class="row mt-5">
       <div class="col"><img src="images/s11.jpg" alt="" class="img-thumbnail"></div>
-      <div class="col"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni soluta voluptatibus delectus eos dignissimos voluptatem maiores cupiditate nam ipsa ea suscipit voluptate explicabo, sequi velit libero eveniet qui incidunt sint vero distinctio, molestias. Adipisci pariatur nulla dolore mollitia, dicta architecto. Et, delectus voluptatum officiis amet similique, exercitationem minima cupiditate ea.</p></div>
+      <div class="col"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni soluta voluptatibus delectus eos dignissimos voluptatem maiores cupiditate nam ipsa ea suscipit voluptate explicabo, sequi velit libero eveniet qui incidunt sint vero distinctio, molestias. Adipisci pariatur nulla dolore mollitia, dicta architecto. Et, delectus voluptatum officiis amet similique, exercitationem minima cupiditate ea.</p>
+        <a href="#" class="btn btn-warning m-5" title="Message" data-bs-placement="bottom" data-bs-content="最新活動訊息">Link1</a>
+        <a href="#" class="btn btn-info m-5" title="Message" data-bs-placement="top" data-bs-content="商品訊息, 買一送一活動開始" data-bs-trigger="focus">Link2</a>
+        <a href="#" class="btn btn-danger m-5" title="Message" data-bs-placement="right" data-bs-content="線上加入好友, 可以獲得折扣!" data-bs-trigger="hover">Link3</a>
+
+      </div>
     </div>
   </div>
 
@@ -22,7 +27,12 @@
 
   <!-- Option 1: Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-
+  <script src="jquery/jquery-3.7.1.min.js"></script>
+  <script>
+    $(function(){
+      $('a').popover()
+    })
+  </script>
   <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
