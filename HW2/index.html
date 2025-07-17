@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap5 page template</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js" integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK" crossorigin="anonymous"></script>
+
+  <style>
+    #pic1, #pic2, #pic3 { /* 可以這樣合併，更簡潔 */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      height: 55vh; /* 將高度調整為 75vh */
+      background-color: #f8f9fa; /* 為空白區域提供一個淺色背景，可根據需要調整 */
+    }
+    #pic1{
+      background-image: url('images/p1.png');
+    }
+    #pic2{
+      background-image: url('images/p2.png');
+    }
+    #pic3{
+      background-image: url('images/p3.jpg');
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+      width: 8%; /* 調整箭頭觸控區域的寬度 */
+      opacity: 0.8; /* 稍微降低透明度 */
+    }
+
+/* 如果想讓箭頭本身更靠近中心一點點 */
+.carousel-control-prev {
+  left: 10px; /* 距離左邊緣 10px */
+}
+.carousel-control-next {
+  right: 10px; /* 距離右邊緣 10px */
+}
+
+/* 如果想調整垂直位置，例如稍微下移 */
+.carousel-control-prev,
+.carousel-control-next {
+  top: calc(50% + 20px); /* 在預設 50% 的基礎上再下移 20px */
+  transform: translateY(-50%); /* 保持垂直居中 */
+}
+</style>
+
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col d-flex justify-content-left fixed-top">
+       <h1 class="bg-dark text-white">智慧家居
+       <ul class="nav">               
+        <li class="nav-item bg-dark text-white"><a href="" class="nav-link">首頁</a></li>
+        <button class="btn bg-dark text-white" data-bs-toggle="offcanvas" data-bs-target=".offcanvas">設備管理</button>
+        <li class="nav-item bg-dark text-white"><a href="" class="nav-link"></a>設定</li>
+      
+      </ul></h1> 
+      <div class="offcanvas offcanvas-start">
+        <div class="offcanvas-header">
+          <h1 class="navbar-brand">設備清單</h1> 
+          <button class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+
+
+        <div class="offcanvas-body">
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-action"><a href="" class="btn">燈光</a></li>
+            <li class="list-group-item list-group-item-action"><a href="" class="btn">空調</a></li>
+            <li class="list-group-item list-group-item-action"><a href="" class="btn">門鎖</a></li>
+            <li class="list-group-item list-group-item-action"><a href="" class="btn">攝影機</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+ <div class = "row">
+   <div class = "col-md-10 offset-md-1 p-0">
+
+     <ul class="carousel-indicators list-unstyled">
+      <li data-bs-slide-to="0" data-bs-target=".carousel" class="active" style="width: 10px;height: 10px;border-radius:100%;"></li>
+      <li data-bs-slide-to="1" data-bs-target=".carousel" style="width: 10px;height: 10px;border-radius:100%;"></li>
+      <li data-bs-slide-to="2" data-bs-target=".carousel" style="width: 10px;height: 10px;border-radius:100%;"></li>
+    </ul>
+    <div class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" my-4>
+      <div class="carousel-inner">
+        <div class="carousel-item active mt-3" id="pic1">
+          <!-- <img src="images/s13.jpg" alt="" class="img-fluid"> -->
+          <div class="carousel-caption h-100 d-flex align-items-center justify-content-center">
+            <h2 class="text-center display-2 mt-5"></h2>
+          </div>
+        </div>
+        <div class="carousel-item mt-3" id="pic2">
+          <!-- <img src="images/s15.jpg" alt="" class="img-fluid"> -->
+          <div class="carousel-caption h-100 d-flex align-items-center justify-content-center">
+            <h2 class="text-center display-2 mt-5"></h2>
+          </div>
+        </div>
+        <div class="carousel-item mt-3" id="pic3">
+          <!-- <img src="images/s15.jpg" alt="" class="img-fluid"> -->
+          <div class="carousel-caption h-100 d-flex align-items-center justify-content-center">
+            <h2 class="text-center display-2 mt-5"></h2>
+          </div>
+        </div>
+      </div>
+      <a href=".carousel" class="carousel-control-prev" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></a>
+      <a href=".carousel" class="carousel-control-next" data-bs-slide="next"><span class="carousel-control-next-icon"></span></a>
+    </div>
+
+
+  </div>
+
+</div>
+</div>
+
+
+</body>
+</html>
