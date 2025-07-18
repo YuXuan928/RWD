@@ -1,127 +1,300 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="zh-Hant">
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bootstrap5 page template</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js" integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智慧家居導覽列</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-  <style>
-    #pic1, #pic2, #pic3 { /* 可以這樣合併，更簡潔 */
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: contain;
-      height: 55vh; /* 將高度調整為 75vh */
-      background-color: #f8f9fa; /* 為空白區域提供一個淺色背景，可根據需要調整 */
-    }
-    #pic1{
-      background-image: url('images/p1.png');
-    }
-    #pic2{
-      background-image: url('images/p2.png');
-    }
-    #pic3{
-      background-image: url('images/p3.jpg');
-    }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">    
 
-    .carousel-control-prev,
-    .carousel-control-next {
-      width: 8%; /* 調整箭頭觸控區域的寬度 */
-      opacity: 0.8; /* 稍微降低透明度 */
-    }
+    <style>
+        /* 更改整個網頁的字體 */
+        body {
+            font-family: 'Noto Sans TC', "微軟正黑體", "Microsoft JhengHei", sans-serif;
+            background-color: #f8f9fa; /* 為整個頁面設定一個淺色背景 */
+        }
+        /* 自定義樣式來確保背景色和高度 */
+        .navbar-custom {
+            background-color: #343a40 !important; /* 深色背景 */
+            min-height: 56px; /* 根據 h1 標籤的預設行高調整，確保高度相似 */
+        }
+        .navbar-custom .navbar-brand,
+        .navbar-custom .nav-link,
+        .navbar-custom .btn {
+            color: white !important; /* 導覽列文字顏色為白色 */
+        }
+        /* 調整按鈕的樣式，使其看起來更像導覽連結 */
+        .navbar-custom .btn {
+            padding: .5rem 1rem; /* 讓按鈕的內距與 nav-link 相似 */
+            border-radius: 0; /* 移除圓角 */
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+        }
 
-/* 如果想讓箭頭本身更靠近中心一點點 */
-.carousel-control-prev {
-  left: 10px; /* 距離左邊緣 10px */
-}
-.carousel-control-next {
-  right: 10px; /* 距離右邊緣 10px */
-}
+        /* 移除 Offcanvas 內的自定義背景色和文字顏色 */
+        .offcanvas-body .list-group-item {
+            background-color: transparent !important; /* 移除背景色 */
+            color: inherit !important; /* 繼承父元素文字顏色 */
+        }
+        .offcanvas-body .list-group-item .btn {
+            color: inherit !important; /* 繼承父元素文字顏色 */
+            text-align: left !important; /* 確保按鈕文字靠左對齊 */
+            width: 100%; /* 確保按鈕佔滿寬度 */
+            padding-left: 0; /* 移除按鈕左側內距 */
+        }
 
-/* 如果想調整垂直位置，例如稍微下移 */
-.carousel-control-prev,
-.carousel-control-next {
-  top: calc(50% + 20px); /* 在預設 50% 的基礎上再下移 20px */
-  transform: translateY(-50%); /* 保持垂直居中 */
-}
-</style>
+        /* 輪播圖片背景樣式 */
+        #pic1, #pic2, #pic3 {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain; /* 保持圖片比例並適應容器，不裁切 */
+            height: 55vh; /* 預設高度 (適用於平板和桌機) */
+            background-color: #f8f9fa; /* 為空白區域提供一個淺色背景 */
+        }
 
+        /* 在小螢幕設備 (例如手機，寬度小於或等於 767.98px，Bootstrap 的 sm 斷點以下) 時應用 */
+        @media (max-width: 767.98px) {
+            #pic1, #pic2, #pic3 {
+                height: 35vh; /* 或更小的值，例如 30vh, 40vh，請根據您的圖片長寬比和視覺效果自行調整 */
+                /* 思考：如果高度太小，圖片會很小。如果圖片是橫向的，適當減少高度可以減少左右留白 */
+                /* 如果圖片是正方形或直向的，增加高度可能會有幫助 */
+            }
+        }
+
+        /* 考慮更小的手機螢幕，可以再細分 */
+        @media (max-width: 575.98px) { /* Extra small devices (portrait phones) */
+            #pic1, #pic2, #pic3 {
+                height: 30vh; /* 針對極小螢幕可能再調整 */
+            }
+        }
+        #pic1{
+            background-image: url('images/p1.png');
+        }
+        #pic2{
+            background-image: url('images/p2.png');
+        }
+        #pic3{
+            background-image: url('images/p3.jpg');
+        }
+
+        /* 輪播控制箭頭樣式 */
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 8%; /* 調整箭頭觸控區域的寬度 */
+            opacity: 0.8; /* 稍微降低透明度 */
+            top: calc(50% + 20px); /* 垂直位置微調 */
+            transform: translateY(-50%); /* 保持垂直居中 */
+        }
+        .carousel-control-prev {
+            left: 10px; /* 距離左邊緣 10px */
+        }
+        .carousel-control-next {
+            right: 10px; /* 距離右邊緣 10px */
+        }
+
+        /* 自定義設備卡片樣式 */
+        /* 為了確保 card-title 內的元素仍能適當對齊，如果 badge 後面文字較多或需要更多控制 */
+        .device-card .card-title {
+            width: 100%; /* 讓 h5 佔滿父容器寬度，以便其內部元素可以對齊 */
+            display: flex;
+            align-items: center;
+        }
+        /* 設備名稱與徽章之間的間距 */
+        .device-card .card-title .device-name {
+            margin-right: 10px; /* 標題與徽章相隔 10px */
+            white-space: nowrap; /* 防止名稱換行 */
+        }
+        /* 確保徽章或 spinner 內的元素垂直對齊 */
+        .device-card .card-title .badge,
+        .device-card .card-title .spinner-border {
+            vertical-align: middle;
+        }
+        /* 修正燈光徽章中的圖片位置 */
+        .device-card .card-title .badge img {
+            margin-right: 4px; /* 如果圖片後面還有文字，增加間距 */
+        }
+        .device-card .card-body {
+            min-height: 120px; /* 根據需要調整以保持卡片高度一致 */
+            display: flex; /* 啟用 Flexbox */
+            flex-direction: column; /* 內容垂直排列 */
+            justify-content: center; /* 垂直置中 */
+            align-items: flex-start; /* 將 Flex 項目靠左對齊 */
+            /* 移除 text-align: center; 因為我們希望 p 靠左 */
+            padding-left: 1rem; /* 增加左側內邊距，讓內容有適當的間距，類似標準 card-body 的視覺效果 */
+            padding-right: 1rem; /* 保持右側內邊距 */
+        }
+        /* 如果需要，可以讓 p 標籤確保從左邊緣開始 */
+        .device-card .card-text {
+            width: 100%; /* 確保 p 佔滿寬度 */
+            text-align: left; /* 強制文字左對齊 */
+        }
+
+        /* 主內容區塊的內邊距，以避免與固定導覽列重疊 */
+        .main-content-area {
+         padding-top: 80px; /* 根據導覽列的實際高度調整此值 */
+     }
+
+     .mt-10px {
+         margin-top: 10px !important;
+     }
+     /* 為了按鈕與輸入框之間精確的 10px 水平間距 */
+     .button-col-ml-10px {
+         margin-left: 10px !important;
+     }
+ </style>
 </head>
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col d-flex justify-content-left fixed-top">
-       <h1 class="bg-dark text-white">智慧家居
-       <ul class="nav">               
-        <li class="nav-item bg-dark text-white"><a href="" class="nav-link">首頁</a></li>
-        <button class="btn bg-dark text-white" data-bs-toggle="offcanvas" data-bs-target=".offcanvas">設備管理</button>
-        <li class="nav-item bg-dark text-white"><a href="" class="nav-link"></a>設定</li>
-      
-      </ul></h1> 
-      <div class="offcanvas offcanvas-start">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top navbar-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">智慧家居</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">首頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                            設備管理
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">設定</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header">
-          <h1 class="navbar-brand">設備清單</h1> 
-          <button class="btn-close" data-bs-dismiss="offcanvas"></button>
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">設備清單</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-
-
         <div class="offcanvas-body">
-          <ul class="list-group">
-            <li class="list-group-item list-group-item-action"><a href="" class="btn">燈光</a></li>
-            <li class="list-group-item list-group-item-action"><a href="" class="btn">空調</a></li>
-            <li class="list-group-item list-group-item-action"><a href="" class="btn">門鎖</a></li>
-            <li class="list-group-item list-group-item-action"><a href="" class="btn">攝影機</a></li>
-          </ul>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <a href="#" class="btn">燈光</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#" class="btn">空調</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#" class="btn">門鎖</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#" class="btn">攝影機</a>
+                </li>
+            </ul>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="container-fluid">
- <div class = "row">
-   <div class = "col-md-10 offset-md-1 p-0">
-
-     <ul class="carousel-indicators list-unstyled">
-      <li data-bs-slide-to="0" data-bs-target=".carousel" class="active" style="width: 10px;height: 10px;border-radius:100%;"></li>
-      <li data-bs-slide-to="1" data-bs-target=".carousel" style="width: 10px;height: 10px;border-radius:100%;"></li>
-      <li data-bs-slide-to="2" data-bs-target=".carousel" style="width: 10px;height: 10px;border-radius:100%;"></li>
-    </ul>
-    <div class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" my-4>
-      <div class="carousel-inner">
-        <div class="carousel-item active mt-3" id="pic1">
-          <!-- <img src="images/s13.jpg" alt="" class="img-fluid"> -->
-          <div class="carousel-caption h-100 d-flex align-items-center justify-content-center">
-            <h2 class="text-center display-2 mt-5"></h2>
-          </div>
-        </div>
-        <div class="carousel-item mt-3" id="pic2">
-          <!-- <img src="images/s15.jpg" alt="" class="img-fluid"> -->
-          <div class="carousel-caption h-100 d-flex align-items-center justify-content-center">
-            <h2 class="text-center display-2 mt-5"></h2>
-          </div>
-        </div>
-        <div class="carousel-item mt-3" id="pic3">
-          <!-- <img src="images/s15.jpg" alt="" class="img-fluid"> -->
-          <div class="carousel-caption h-100 d-flex align-items-center justify-content-center">
-            <h2 class="text-center display-2 mt-5"></h2>
-          </div>
-        </div>
-      </div>
-      <a href=".carousel" class="carousel-control-prev" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></a>
-      <a href=".carousel" class="carousel-control-next" data-bs-slide="next"><span class="carousel-control-next-icon"></span></a>
     </div>
 
+    <div class="main-content-area">
+        <div class="container-fluid">    
+            <div class="row">
+                <div class="col-md-10 offset-md-1 p-0 mt-3">
+                    <div class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" id="pic1">
+                                <div class="carousel-caption h-100 d-flex align-items-center justify-content-center">
+                                    <h2 class="text-center display-2 mt-5"></h2>
+                                </div>
+                            </div>
+                            <div class="carousel-item" id="pic2">
+                                <div class="carousel-caption h-100 d-flex align-items-center justify-content-center">
+                                    <h2 class="text-center display-2 mt-5"></h2>
+                                </div>
+                            </div>
+                            <div class="carousel-item" id="pic3">
+                                <div class="carousel-caption h-100 d-flex align-items-center justify-content-center">
+                                    <h2 class="text-center display-2 mt-5"></h2>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target=".carousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target=".carousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-  </div>
+    <div class="row mt-3 mb-4">    
+        <div class="col-md-10 offset-md-1 p-0">    
+            <div class="row">    
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                    <div class="card device-card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <span class="device-name">空調</span> <span class="badge bg-success">啟動</span>
+                            </h5>
+                            <p class="card-text">目前溫度：26°C</p>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                    <div class="card device-card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <span class="device-name">燈光</span> <span class="badge text-warning"><div class="spinner-border spinner-border-sm text-warning" role="status"><span class="visually-hidden">Loading...</span></div></span>
+                            </h5>
+                            <p class="card-text">狀態：開啟中</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                    <div class="card device-card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <span class="device-name">門鎖</span> <span class="badge bg-secondary">已上鎖</span>
+                            </h5>
+                            <p class="card-text">最後操作：5 分鐘前</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4 mb-4">
+        <div class="col-md-10 offset-md-1 p-0">
+            <div class="p-3">
+                <h3 class="mb-3">設備控制表單</h3>
+                <form class="row g-3 align-items-end"> <div class="col-md-4"> <label for="deviceSelect" class="form-label fw-bold">選擇設備</label>
+                    <select class="form-select" id="deviceSelect">
+                        <option selected>請選擇</option>
+                        <option value="device1">設備一</option>
+                        <option value="device2">設備二</option>
+                        <option value="device3">設備三</option>
+                    </select>
+                </div>
+                <div class="col-md-4"> <label for="controlValue" class="form-label fw-bold">控制值</label>
+                    <input type="text" class="form-control" id="controlValue" placeholder="如：開 / 25°C">
+                </div>
+                <div class="col-md-auto button-col-ml-10px"> <button type="submit" class="btn btn-primary">送出</button> </div>
+            </form>
+        </div>
+    </div>
 </div>
-</div>
 
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
