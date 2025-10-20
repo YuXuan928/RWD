@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+	<meta charset="utf-8">
+	<title>Windows物件基本認識-setTimeout + clearTimeout</title>
+	<link rel="stylesheet" href="css/s3.css">
+	<script>
+		let ct=0
+		function showText(){
+			window.document.write('<p>'+ct+'Good</p>')
+			ct=setTimeout(showText,1000)
+			if (ct>=20){
+				clearTimeout(ct)
+			}
+		}
+	</script>
+</head>
+<body onload="showText()">
+</body>
+</html>

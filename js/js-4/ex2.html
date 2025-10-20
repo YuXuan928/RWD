@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>關閉目前視窗</title>
+	<style>
+		*{
+			margin: 0;
+		}
+		body{
+			text-align: center;
+		}
+		img{
+			display: block;
+			margin: 20px auto;
+			width: 800px;
+		}
+	</style>
+</head>
+<body>
+	<img src="images/q.jpg" alt="">
+	<script>
+		setTimeout(q,2000)
+		function q(){
+			let answer=confirm("數學運算式((2*3)+6)-5 答案為7--正確請按確定,錯誤請按取消")
+			// alert(answer)
+			if(answer==true){
+				document.write("<img src='images/ok.jpg' alt='' style='display:block;margin:0px auto'>")
+			}else{
+				alert("你答錯了!!下次再來")
+				window.close()
+			}
+		}
+	</script>
+</body>
+</html>
+<!-- ....設計讓瀏覽者回答問題...
+頁面載入後2秒出現確認視窗 讓瀏覽者回答數學運算式((2*3)+6)-5 答案為7 
+若答錯!則出現訊息並關閉目前視窗 否則在頁面中呈現指定圖檔ok.jpg ! -->

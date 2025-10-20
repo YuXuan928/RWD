@@ -1,0 +1,15 @@
+表單ID:1FAIpQLSeM1O1RwhfRuLgMKgJEfWrJJcu30GVaYloV1J1-Rrt_pJ_T8g
+
+姓名寫入的對應欄位代號:1314727636
+
+連絡電話寫入的對應欄位代號:198000074
+
+留言事項寫入的對應欄位代號:804432408
+
+
+表單規則
+https://docs.google.com/forms/d/e/1FAIpQLSeM1O1RwhfRuLgMKgJEfWrJJcu30GVaYloV1J1-Rrt_pJ_T8g/formResponse?entry.1314727636=Leo&entry.198000074=aa123@gmail.com&entry.804432408=hello!
+
+
+**欄位代號 請找第二層中括號裡面的數字編號**
+

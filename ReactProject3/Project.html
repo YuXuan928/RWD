@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>留言板/討論區</title>
+	<script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+	<style>
+		*{margin: 0px;margin: 0px;}
+		body{font-family: Tohoma,Verdana,sans-serif;max-width: 700px;margin: 30px auto;background-color: #f9f9f9;color: #333;padding: 20px;}
+		h1{text-align: center;margin-bottom: 20px;color: #309;}
+		.comment-section{background-color: #fff;padding: 20px;border-radius: 8px;box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);}
+		.comment-form{margin-bottom: 30px;}
+		.comment-form input[type='text'],.comment-form textarea{width: 100%;padding: 8px 10px;margin-bottom: 10px;font-size: 1rem;border: 1.5px solid #ccc;border-radius: 8px;resize: vertical;box-sizing: border-box;transition: all 0.3s;}
+		.comment-form button{background-color: #336;color: #fff;border: none;padding: 10px 20px;font-size: 1rem;border-radius: 8px;cursor: pointer;transition: all 0.3s;}
+		.comment-form button:hover{filter:invert();}
+		.comment-list{list-style: none;padding-left: 0px;border: 2px solid #ddd;border-radius: 10px;}
+		.comment-item{border-bottom: 1px solid #fff;padding: 15px 10px;position: relative;margin-left: 0px;margin-top: 20px;}
+		.comment-item .author{font-weight: 700;color: #363;}
+		.comment-item .date{font-size: 0.85rem;color: #999;margin-left: 20px;}
+		.comment-item .content{margin: 15px 0px 10px 0px;white-space: pre-wrap;line-height: 1.5;}
+		.comment-actions{font-size: 0.85rem;}
+		.comment-actions button{background: none;border: none;color: #999;cursor: pointer;margin-right: 15px;padding: 0;}
+		.comment-actions button:hover{text-decoration: underline;color: darkblue;}
+		.comment-children{margin-left: 30px;margin-top: 15px;}
+		.reply-form,.edit-form{margin-top: 10px;margin-left: 5px;border-left: 2px soid #336;padding-left: 2px;background: lightgray;border-radius: 8px;}
+		.btn-cancel{background-color: #639;margin-left: 10px;padding: 8px 10px;}
+		.btn-cancel:hover{background-color: #c0392b;}
+	</style>
+</head>
+<body>
+	<h1>留言板/討論區</h1>
+	<div id="root"></div>
+
+	<script type="text/babel">
+		const { useState, useEffect } = React;
+
+		function formDate(ts) {
+			const d = new Date(ts);
+			return d.toLocaleString();
+		}
+
+		function getCommentsFromStorge() {
+			const data = localStorage.getItem('comments'); // 修正 localStorge → localStorage
+			return data ? JSON.parse(data) : [];
+		}
+
+		function saveCommentsToStorge(comments) {
+			localStorage.setItem('comments', JSON.stringify(comments)); // 修正 localStorge → localStorage
+		}
+
+		function genId() {
+			return '_' + Math.random().toString(36).substr(2, 9); // 修正語法
+		}
+
+		function buildTree(comments) {
+			const map = {};
+			const roots = [];
+			comments.forEach(c => {
+				c.children = [];
+				map[c.id] = c;
+			});
+			comments.forEach(c => {
+				if (c.parentId) {
+					if (map[c.parentId]) {
+						map[c.parentId].children.push(c);
+					}
+				} else { roots.push(c); } // 修正 root → roots
+			});
+			return roots;
+		}
+
+		function CommentForm({ onSubmit, onCancel, initialAuthor = '', initialContent = '', submitLabel = "送出留言" }) {
+			const [author, setAuthor] = useState(initialAuthor);
+			const [content, setContent] = useState(initialContent);
+
+			const handleSubmit = e => {
+				e.preventDefault();
+				if (!author.trim() || !content.trim()) { // 修正 content.trim 判斷
+					alert("請填寫使用者名稱與留言內容");
+					return;
+				}
+				onSubmit({ author: author.trim(), content: content.trim() }); // 修正少括號
+				setAuthor('');
+				setContent('');
+			};
+
+			return (
+				React.createElement("form", { className: "comment-form", onSubmit: handleSubmit },
+					React.createElement("input", {
+						type: "text",
+						placeholder: "使用者名稱",
+						value: author,
+						onChange: e => setAuthor(e.target.value),
+					}),
+					React.createElement("textarea", {
+						rows: 3,
+						placeholder: "留言內容",
+						value: content,
+						onChange: e => setContent(e.target.value),
+					}),
+					React.createElement("button", { type: "submit" }, submitLabel),
+					onCancel && React.createElement("button", { // 修正 creatElement → createElement
+						type: "button",
+						onClick: onCancel,
+						className: "btn-cancel"
+					}, "取消")
+					)
+				);
+		}
+
+		function Comment({ comment, onReply, onEdit, onDelete }) {
+			const [isReplying, setIsReplying] = useState(false);
+			const [isEditing, setIsEditing] = useState(false);
+
+			const handleReplySubmit = ({ author, content }) => {
+				onReply(comment.id, { author, content });
+				setIsReplying(false);
+			};
+			const handleEditSubmit = ({ author, content }) => {
+				onEdit(comment.id, { author, content });
+				setIsEditing(false);
+			};
+
+			return (
+				React.createElement("li", { className: "comment-item" },
+					React.createElement("div", null,
+						React.createElement("span", { className: "author" }, comment.author),
+						React.createElement("span", { className: "date" }, formDate(comment.createdAt))
+						),
+					!isEditing && React.createElement("p", { className: "content" }, comment.content), // 修正拼寫
+					isEditing && React.createElement(CommentForm, {
+						initialAuthor: comment.author,
+						initialContent: comment.content,
+						submitLabel: "儲存",
+						onSubmit: handleEditSubmit,
+						onCancel: () => setIsEditing(false) // 修正 (=> ... ) → () => ...
+					}),
+					!isEditing && React.createElement("div", { className: "comment-actions" },
+						React.createElement("button", { onClick: () => setIsReplying(!isReplying) }, isReplying ? "取消回覆" : "回覆"),
+						React.createElement("button", { onClick: () => setIsEditing(true) }, "編輯"),
+						React.createElement("button", {
+							onClick: () => {
+								if (window.confirm("確定要刪除嗎?")) {
+									onDelete(comment.id);
+								}
+							}
+						}, "刪除")
+						),
+					isReplying && React.createElement("div", { className: "reply-form" }, // 修正括號
+						React.createElement(CommentForm, { submitLabel: "送出回覆", onSubmit: handleReplySubmit, onCancel: () => setIsReplying(false) })
+						),
+					comment.children && comment.children.length > 0 && React.createElement("ul", { className: "comment-children" },
+						comment.children.map(child => ( // 修正 comment-children → comment.children
+							React.createElement(Comment, { key: child.id, comment: child, onReply, onEdit, onDelete })
+							))
+						)
+					)
+				);
+		}
+
+		function CommentBoard() {
+			const [comments, setComments] = useState([]);
+
+			useEffect(() => {
+				const saved = getCommentsFromStorge();
+				setComments(saved);
+			}, []);
+
+			function updateComments(newComments) {
+				setComments(newComments);
+				saveCommentsToStorge(newComments);
+			}
+
+			function clearComments() {
+				if (window.confirm("確定要清除所有留言嗎？")) {
+				updateComments([]); // 清空留言
+			}
+		}
+
+
+
+		function handleAddComment({ author, content }) {
+			const newComment = {
+				id: genId(),
+				parentId: null,
+				author,
+				content,
+				createdAt: Date.now(),
+			};
+			updateComments([...comments, newComment]);
+		}
+
+		function handleReply(parentId, { author, content }) {
+			const newComment = {
+				id: genId(),
+				parentId: parentId,
+				author,
+				content,
+				createdAt: Date.now(),
+			};
+			updateComments([...comments, newComment]);
+		}
+
+		function handleEdit(id, { author, content }) {
+			const newComments = comments.map(c => {
+				if (c.id === id) {
+					return { ...c, author, content };
+				}
+				return c;
+			});
+			updateComments(newComments);
+		}
+
+		function handleDelete(id) {
+			function collectIdsToDelete(targetId, list) {
+				let ids = [targetId];
+				list.forEach(c => {
+					if (c.parentId === targetId) {
+						ids = ids.concat(collectIdsToDelete(c.id, list));
+					}
+				});
+				return ids;
+			}
+			const idsToDelete = collectIdsToDelete(id, comments);
+			const filtered = comments.filter(c => !idsToDelete.includes(c.id));
+			updateComments(filtered);
+		}
+
+		const treeData = buildTree(comments);
+
+		return (
+			React.createElement("div", { className: "comment-section" },
+				React.createElement(CommentForm, { onSubmit: handleAddComment, submitLabel: "新增留言" }),
+				React.createElement("button", { 
+					type: "button", 
+					onClick: clearComments, 
+					style: { margin: "10px 0", color: "red" }
+				}, "清除全部留言"),
+				React.createElement("ul", { className: "comment-list" },
+					treeData.length === 0
+					? React.createElement("p", null, "目前無留言!快來當頭香做第一個發言人留言!")
+					: treeData.map(comment => (
+						React.createElement(Comment, {
+							key: comment.id,
+							comment: comment,
+							onReply: handleReply,
+							onEdit: handleEdit,
+							onDelete: handleDelete
+						})
+						))
+					)
+				)
+			);
+
+	}
+
+
+		ReactDOM.render(<CommentBoard/>, document.getElementById('root')); // 修正 </>
+	</script>
+</body>
+</html>

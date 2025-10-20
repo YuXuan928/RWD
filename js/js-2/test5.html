@@ -1,0 +1,35 @@
+﻿<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+	<meta charset="utf-8">
+	<title>綜合練習</title>
+	<style>
+		body{
+			background-image: url("images/p5.jpg");
+			background-position: center;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: cover;
+		}
+	</style>
+	<script>
+		alert("WELCOME!歡迎來到阿枝水果行")
+		let k=prompt("請輸入水果代號(1:Apple 2:Orange 3:Banana)")
+		let judge=(k>3)?alert('你的選擇不在清單選項中,按下確定鍵 重新選擇'):"你的選擇將顯示在頁面上"
+		if(k==1){
+			document.write("<h1 style=color:brown>你選擇的是1-Apple</h1><h2 style=color:red>中文是蘋果</h2>")
+		}else if(k==2){
+			document.write("<h1 style=color:brown>你選擇的是2-Orange</h1><h2 style=color:orange>中文是橘子</h2>")
+		}else if(k==3){
+			document.write("<h1 style=color:brown>你選擇的是3-Banana</h1><h2 style=color:yellow>中文是香蕉</h2>")
+		}else{
+			location.href="test5.html"
+		}
+	</script>
+</head>
+
+<body>
+<!--請設計當進入頁面時開啟一個歡迎訊息
+	接著設計輸入視窗 當使用者輸入水果代號(1:Apple 2:Orange 3:Banana) 可以在頁面中出現水果名稱-->
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>React CDN Document</title>
+	<script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<style>
+	#root{
+		width: 80%;
+		margin: 50px auto;
+		text-align: center;
+	}
+	#root button{
+		margin: 1.5rem;
+		border: none;
+		background: linear-gradient(to top,darkcyan.cyan);
+		color: #fff;
+		font-size: 0.8em;
+		border-radius: 10px;
+	}
+	#root button:hover{
+		filter: invert()drop-shadow(2px 2px 2px #000);
+		cursor: pointer;
+	}
+	p{
+		color: blue;
+	}
+</style>
+</head>
+<body>
+	<div id="root"></div>
+	<script type="text/babel">
+		function Tooggle(){
+			const[isOn,setIson]=React.useState(false);
+			return(
+				<div>
+					<<button onClick={()=>setIson(!isOn)}>{isOn?"關閉":"開啟"}</button>
+					<p>狀態:{isOn?"開":"關"}</p>
+				</div>
+			)
+		}
+		
+		ReactDOM.render(<Counter/>,document.getElementById('root'))
+	</script>
+	
+</body>
+</html>
+
+<!-- State是React組件中用來儲存、管理資料(使用者輸入、點擊狀態等等)的一種機制。
+可以讓UI隨著資料變動而重新渲染。
+在React CDN環境 只要使用React.useState 即可使用state,不需要improt React(useState)。
+基本語法
+const[stateValue,setStatevalue]=React.useState(initialValue)
+stateValue:目前的狀態
+setStatevalue:用來更新狀態的函式。
+initialValue:狀態的初始值-->

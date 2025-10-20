@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>React CDN Document-綜合練習1-代辦清單+完成清單確認</title>
+	<script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<style>
+	#root{
+		width: 80%;
+		text-align: center;
+		margin: 20px auto;
+	}
+	ul{
+		width: 60%;
+		list-style: none;
+	}
+	ul li{
+		margin: 20px;
+	}
+	ul li span{
+		width: 300px;
+		margin-right: 20px;
+		/* background: cyan; */
+		display: inline-block;
+		border-bottom: dashed 1px lightgray;
+	}
+</style>
+</head>
+<body>
+	<div id="root"></div>
+	<script type="text/babel">
+		function Todolist(){
+			const[tasks,setTasks]=React.useState([
+				{id:1,text:"繳電費",done:false},
+				{id:2,text:"運動健身",done:false},
+				{id:3,text:"線上學習",done:false}
+			])
+			
+			function toggleDone(id){
+				const updated=tasks.map(
+					task=>task.id===id?{...task,done:!task.done}:task)
+				setTasks(updated)
+			}
+
+			return(
+				<div>
+				<h2>代辦清單:{tasks.length} / 尚未完成:{task/filter(task=>!task.done).length}</h2>
+				<hr/>
+				<ul>
+				{tasks.map(task=>(
+					<li key={task.id}>
+					<span>{task.text}-{task.done?"已完成":"尚未完成"}</span>
+					<button onClick={()=>toggleDone(task.id)}>{task.done?"取消完成":"標註完成"}</button>
+					</li>
+				))}
+			</ul>
+			</div>
+			)
+		}
+		ReactDOM.render(<Todolist/>,document.getElementById('root'))
+	</script>
+</body>
+</html>

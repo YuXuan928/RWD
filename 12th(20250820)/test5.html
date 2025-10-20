@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>React CDN Document</title>
+	<script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+	<style>
+		#area{
+			width: 80%;
+			margin: 50px auto;
+			text-align: center;
+
+		}
+		#area .show{
+			/* background-color: gray; */
+			width: 28%;
+			display: inline-block;
+			margin: 20px auto;
+		}
+		#area ul{
+			list-style: none;
+			padding: 0px;
+
+		}
+		#area ul li p{
+			font-size: 1.3em;
+			border-bottom: 1px dashed lightgray;
+			margin-top: 0.85em;
+			color: cadetblue;
+		}
+		#area ul li img{
+			width: 80%;
+		}
+		#area ul li small{
+			color: darkcyan;
+			display: block;
+			font-size: 0.65em;
+			margin-bottom: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div id="area"></div>
+	<script type="text/babel">
+		function Booklist(){
+			const books=[
+				{title:'HTML認識',author:'王大同',img:'images/book1.png'},
+				{title:'旅遊通識',author:'李小美',img:'images/book2.png'},
+				{title:'攝影秘訣',author:'葉美雲',img:'images/book3.png'}
+			]
+			return(
+				<div>
+					<ul>
+						{books.map((book,index)=>(
+							<li className="show" key={index}>
+							<img src={book.img}/> 
+							<p>{book.title}-<small>{book.author}</small></p>
+							</li>
+						))}
+					</ul>	
+				</div>
+			)
+		}
+		ReactDOM.render(<Booklist />,document.getElementById("area"))
+	</script>
+	<!-- <img src="../images/books1.png" alt=""> -->
+	<!-- 如果資料在不同層需要先使用../跳出資料夾後打上路徑位置 -->
+	<!-- react裡圖片標示內容和HTML的一樣 -->
+</body>
+</html>

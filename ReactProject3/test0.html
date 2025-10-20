@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>localStorage</title>
+	<script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+</head>
+<body>
+	<script type="text/babel">
+		localStorage.setItem('user','john');
+		const name=localStorage.getItem('user')
+
+		localStorage.removeItem('user')
+		localStorage.clear()
+	</script>
+</body>
+</html>
+
+<!-- 
+本地儲存(Local Storage)
+是瀏覽器提供的一種資料儲存機制，可以將資料以「鍵值對(key-value)」的形式，永久儲存在使用者的瀏覽器中(除非主動清除或程式碼刪除)。
+
+重點如下:
+
+資料會保留在使用者的裝置中，即使關閉或重新整理網頁也不會消失。
+
+每個域名最多約能儲存 5~10MB。
+
+只能儲存字串類型的資料(需自行轉換 JSON)。 -->

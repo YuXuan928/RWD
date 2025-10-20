@@ -1,0 +1,72 @@
+<!doctype html>
+<html  lang="zh-Hant-TW">
+<head>
+	<meta charset="utf-8">
+	<title>Javascript-5-變數基本練習</title>
+	<script>
+		// var inputYear=prompt("請輸入出生西元年"),age,thisYear=2025;
+		// age=thisYear-inputYear;
+		// alert("今年"+age+"歲")
+		// alert({name:"john",age:30})
+		// alert(function(){return"Hello!"})
+		// console.log("name:","John","Age:",30,"isStudent:",true)
+
+		// 1.var  只能在function內顯示  區塊下無法作用
+		var k=10;    //全域變數
+		function t(){
+			var q=20 //區域變數
+			k=k+q
+			alert(k)
+		}
+		t()
+		// var s=q-10
+		// alert(s)
+
+		if(true){
+			var n=10
+			var s=n-5
+			alert(s)
+		}
+		var yy=n-5
+		alert(yy)
+
+
+		// 2.let
+		if(true){
+			let q=20
+			q=50
+			let x=q+5
+			alert(x)
+		}
+		// let answer1=q
+		// alert(answer1)
+
+		// 3.const
+		const z=30;
+		z=50
+		alert(z)
+	</script>
+</head>
+
+<body>
+	<h1>請設計 輸入西元生日年份 可以出現今年幾歲的訊息視窗</h1>
+</body>
+</html>
+
+<!-- 
+alert
+1.獨佔式視窗，需要回應才能禁行下一步!
+2.只能輸出字串
+3.不支持多個參數
+
+console.log
+1.只能在命令列輸出
+2.可以輸出任何形態資料
+3.支持多個參數寫法
+
+變數宣告關鍵字選擇
+
+1.var
+2.let
+3.const
+-->

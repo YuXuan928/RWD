@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>商品頁面</title>
+	<style>
+		*,body{
+			margin: 0px;
+		}
+		body{
+			text-align: center;
+		}
+		#shop{
+			width: 80%;
+			margin: 0px auto;
+		}
+		#shop .card{
+			width: 30%;
+			margin: 30px 10px;
+			display: inline-block;
+			border: 1px #ccc solid;
+		}
+		#shop .card h1{
+			color: darkblue;
+			font-size: 22px;
+		}
+		#shop .card img{
+			max-width: 100%;
+		}
+		#shop .card p{
+			color: brown;
+			font-family: Arial;
+			font-size: 18px;
+			border-top: 1px dashed #ccc;
+		}
+		button{
+			width: 150px;
+			background: linear-gradient(to top,darkcyan,lightcyan);
+			margin: 20px auto;
+			border: none;
+			border-radius: 10px;
+			display: inline-block;
+			font-size: 1.2rem;
+		}
+	</style>
+</head>
+<body>
+	<button id="cheap">價格低於25000</button>
+	<button id="highvalue">價格高於25000</button>
+	<button id="showAll">全部顯示</button>
+	<hr>
+	<div id="shop"></div>
+
+	<script>
+		const items=[
+			{title:'手機<br>Mobile',img:'images/p1.png',price:25000},
+			{title:'筆電<br>Laptop',img:'images/p2.png',price:45000},
+			{title:'耳機<br>Handphone',img:'images/p3.png',price:2800},
+			{title:'電視<br>TV',img:'images/p4.png',price:27000},
+			{title:'相機<br>Camera',img:'images/p5.png',price:14000},
+			{title:'平板<br>Tablet',img:'images/p6.png',price:8500},
+			{title:'鍵盤<br>Keyboard',img:'images/p7.png',price:2500},
+			{title:'螢幕<br>Monitor',img:'images/p8.png',price:3500}
+		]
+		const drawItems=(itemList)=>{
+			let html=""
+			itemList.forEach((value)=>{
+				html+=`
+				<div class="card">
+				<h1>${value.title}</h1>
+				<p><img src=${value.img}></p>
+				<p>NT$${value.price}元</p>
+				</div>
+				`
+			})
+			document.getElementById('shop').innerHTML=html
+		}
+		const doCheap=()=>{
+			const newItems=items.filter((value)=>{
+				return value.price<25000
+			})
+			drawItems(newItems)
+		}
+		const noCheap=()=>{
+			const newItems=items.filter((value)=>{
+				return value.price>=25000
+			})
+			drawItems(newItems)
+		}
+
+		const doAll=()=>{
+			drawItems(items)
+		}
+		
+		document.getElementById('cheap').addEventListener('click',doCheap)
+		document.getElementById('highvalue').addEventListener('click',noCheap)
+		document.getElementById('showAll').addEventListener('click',doAll)
+		drawItems(items)
+
+	</script>
+</body>
+</html>
